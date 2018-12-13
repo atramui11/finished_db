@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link src="{{ url_for('static', filename='style.css')}}"></link>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+    <!-- <script src="{{ url_for('static', filename='main.js')}}"></script>    -->
+    <!-- Comment here -->
+    <!-- <script src="/main.js"></script> -->
+</head>
+
+
+<script>
+    function main () 
+{
+    //  Load inputs
+    var minage = document.getElementById("minage");
+    var maxage = document.getElementById("maxage");
+    var gender = document.getElementById("gender");
+    var paap = document.getElementById("paap");
+
+    //  Validate inputs
+    // if (minage.value < 0 || minage.value > maxage.value){
+    //     alert("Please verify that minage <= maxage and that minage is positive.");
+    //     return;
+    // }
+
+    // if (gender.value.localCompare("m") != 0 || gender.value.localCompare("f") != 0){
+    //     alert("Please type correct gender: \"m\" or \"f\".");
+    //     return;
+    // }
+
+    // if (paap.value.localCompare("ap") != 0 || paap.value.localCompare("pa") != 0){
+    //     alert("Please type in correct PAAP: \"pa\" or \"ap\".");
+    //     return;
+    // }
+
+    // if (minage.value == null || maxage.value == null || gender.value == null || paap.value == null){
+    //     alert("No null values");
+    //     return;
+    // }
+
+
+    $.post("receiver1", JSON.stringify(minage.value), function(){
+    });
+
+    $.post("receiver2", JSON.stringify(maxage.value), function(){
+    });
+
+    $.post("receiver3", JSON.stringify(gender.value), function(){
+    });
+
+    $.post("receiver4", JSON.stringify(paap.value), function(){
+    });
+
+    alert("name is: {{name}}");
+
+    // fetch("/receiver4")
+    //   //   .then(response => response.json())
+    //   // .then(json => {
+    //   //   console.log('parsed json', json) // access json.body here
+    //   // })
+
+    //     // .then
+    //     // .then(res => res.text()) // Read the body as a string
+
+
+
+
+    //     // .then(function(response) {
+    //     // .then(function(myJson) {
+    //     //     document.write(
+    //     //       `User: ${myJson.name} <br/>
+    //     //       Email: ${myJson.email} <br />
+    //     //       Website: ${myJson.website}`
+    //     // );
+    //     //     return myJson
+    //     // })
+
+
+    //     // .then(function(data) {
+    //     // // Here you get the data to modify as you please
+    //     //     //alert(JSON.stringify(data.jason()));
+    //     //     alert(JSON.stringify(data));
+    //     // })
+    //     .then(function(response) {
+    //         alert(response.text());
+
+    //     });
+      // .catch(function(error) {
+      //   // If there is any error you will catch them here
+      //       aler("error");
+      // });
+}
+
+</script>
+    
+<body>
+    
+    <h1><u>INDEX@ HERE</u></h1>
+    
+    <h2>All data is from NIH CXR8 Dataset (112,000 X-Rays)</h2>
+    
+
+    <p>You can search our database for the details of patient diagnoses in a given:<br/><br/> Age range<br/> Gender group<br/> X-Ray View (PA/AP)
+        
+        <br/><br/>
+        
+    <strong><font size="6">Input Parameters below. Output below. </font></strong></p>
+    
+    <!-- container for inputs-->
+    <div class="container">
+    
+        <div id="inputs" style="background-color: #ffff00; border-width:1px; border-style: solid; border-color: #000000; height: 310px">
+            <form>
+
+                <label><font size="5"> Gender (M/F):</font></label>
+                <input id="gender" type="text">
+
+                <label><font size="5">View (PA/AP):</font></label>
+                <input id="paap" type="text">
+
+                <label><font size="5">Minimum Age:</font> </label>
+                <input id="minage" type="number">
+
+                <label><font size="5">Maximum Age</font></label>
+                <input id="maxage" type="number"> <br />
+
+                <button id="submit" onclick="main();">SUBMIT</button>
+    
+
+            </form>
+
+        </div>
+        
+        
+        <!--output table -->
+        <div id="inputs" style="background-color: #ffaf00; border-width:1px; border-style: solid; border-color: #000000; height: 310px">
+        <table>
+            <tr>
+                <th> Diagnosis </th>
+                <th> Diagnosis Count</th>
+        </tr>
+
+        </table>
+        </div>
+        
+    </div>
+
+    
+</body>
+
+    
+    
+</html>
